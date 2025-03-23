@@ -8,7 +8,7 @@ const ImageGenerator: React.FC = () => {
     const generateImage = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:8000/generate', {
+            const response = await fetch('https://1f56-2405-9800-b651-c922-697c-6c46-f862-ac3a.ngrok-free.app/generate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

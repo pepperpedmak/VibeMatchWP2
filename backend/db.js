@@ -9,6 +9,8 @@ const con = new Client({
     database: process.env.DB_NAME 
 });
 
-con.connect().then(() => console.log("Connected Database"));
+con.connect()
+    .then(() => console.log("Connected to Database"))
+    .catch((err) => console.error("Connection error", err));
 
 module.exports = con;
