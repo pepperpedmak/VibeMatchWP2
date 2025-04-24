@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { EyeClosed, Eye } from 'lucide-react';
 
 const GenderList = ["Male", "Female"];
 
@@ -14,6 +15,9 @@ const FillInfo: React.FC = () => {
         : [...prev, gender]
     );
   };
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
@@ -49,9 +53,27 @@ const FillInfo: React.FC = () => {
             <input
               type="text"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Enter your email"
+              placeholder="Enter your phone"
             />
           </div>
+          <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700">Password</label>
+                      <div className="relative">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="Enter password"
+                        />
+                        <span 
+                          className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <Eye /> : <EyeClosed />}
+                        </span>
+                      </div>
+            </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
               Date of Birth

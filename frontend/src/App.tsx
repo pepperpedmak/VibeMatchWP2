@@ -12,6 +12,8 @@ import TravelSelection from './pages/category/travel';
 import MusicSelection from './pages/category/music';
 import CollectionSelection from './pages/category/collections';
 import MovieSelection from './pages/category/movie';
+import Home from './components/home';
+import Profile from './components/profile';
 import GetPasswordPage from './password';
 import Navbar from './components/navbar';
 import ReactDOM from 'react-dom/client';
@@ -76,7 +78,15 @@ function App() {
     {
       path: '/generate-image',
       element: <GeneratePage />,
-          },
+    },
+    {
+      path: "/home",
+      element: <Home />, // Added the /home route here
+    },
+    {
+      path: "/profile",
+      element: <Profile />, // Added the /home route here
+    },
     
   ]);
 
