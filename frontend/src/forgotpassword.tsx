@@ -3,43 +3,40 @@ import { EyeClosed, Eye } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
+const ForgotPasswordPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+   // Prevent the default form submission behavior
     e.preventDefault();
   
     try {
-      const response = await axios.post('http://localhost:8000/auth/login', {
+      // Send a POST request to the server to reset the password
+      const response = await axios.post('http://localhost:8000/auth/reset-password', {
         phone,
         password,
       });
   
-      const { userID } = response.data; 
-  
-      localStorage.setItem('user_id', userID);
-  
-      onLogin();
-      navigate('/home');
-    } catch (err) {
-      if (err.response?.status === 500) {
-        setError("Server error: Please try again later or contact support.");
+      // If the request is successful, navigate to the login page
+      if (response.status === 200) {
+        alert("Password reset successfully. Please log in.");
+        navigate('/login');
       } else {
-        setError(err.response?.data?.message || 'Invalid login credentials.');
+        alert("Failed to reset password. Please try again.");
       }
+    } catch (err) {
+      alert("Error resetting password. Please check your phone number and try again.");
     }
-    
   };
   
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-6 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">Welcome Back!</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Find your account</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">Phone number</label>
@@ -52,14 +49,14 @@ const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Password</label>
+            <label className="block text-sm font-medium text-gray-700">New password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Enter password"
+                placeholder="Enter new password"
               />
               <span 
                 className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
@@ -69,23 +66,14 @@ const LoginPage: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
               </span>
             </div>
           </div>
-          <div className="text-blue-500 text-sm mb-4 cursor-pointer"><Link to="/forgot-password">Forgot your password?</Link></div>
-          <button type="submit" className="w-full bg-[#008DDA] text-white py-2 rounded-lg hover:bg-blue-600">
-            Login
+          <button type="submit" className="w-full bg-[#008DDA] text-white py-2 rounded-lg hover:bg-blue-600 mb-4">
+            Reset Password
           </button>
+          <Link to="/login"><button className="w-full bg-[#008DDA] text-white py-2 rounded-lg hover:bg-blue-600">Back</button></Link>
         </form>
-        {error && <div className="mt-4 text-red-500 text-sm">{error}</div>}
-        <div className="mt-4 flex items-center justify-center border-t pt-4">
-          <button className="w-full flex items-center justify-center gap-2 border px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100">
-            <span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" width={20} alt="Google icon"/></span> Log in with Google
-          </button>
-        </div>
-        <div className="mt-4 text-center text-sm">
-          No account? <span className="text-blue-500 cursor-pointer"><Link to="/register">Sign up</Link></span>
-        </div>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default ForgotPasswordPage;

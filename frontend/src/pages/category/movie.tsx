@@ -7,7 +7,7 @@ const typesmovieList = [
     "Crime", "Documentary", "Drama", "Family", "Fantasy", "History",
     "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi",
     "Sport", "Thriller", "War", "Western", "Superhero", "Supernatural",
-    "Zombie", "Vampire", "Werewolf", "Alien", "Robot", "Time Travel",
+    "Zombie", "Vampire", "Werewolf", "Alien", "Robot", "Time Travel"
 ];
 
 const MovieSelection: React.FC = () => {

@@ -1,3 +1,6 @@
+
+// This component is used to verify the OTP sent to the user's phone number during registration.
+
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 

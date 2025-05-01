@@ -5,7 +5,7 @@ import LoginPage from './login';
 import GetPhoneNumberPage from './getPhonenum';
 import EnterCodePage from './enterCode';
 import SportsSelection from './pages/category/sports';
-import FillInfoPage from './fillinfo';
+import RegisterPage from './register';
 import PetSelection from './pages/category/pet';
 import GamesSelection from './pages/category/games';
 import TravelSelection from './pages/category/travel';
@@ -13,7 +13,9 @@ import MusicSelection from './pages/category/music';
 import CollectionSelection from './pages/category/collections';
 import MovieSelection from './pages/category/movie';
 import Home from './components/home';
-import Profile from './components/profile';
+import ForgotPassword from './forgotpassword';
+import Profile from './profile';
+import BeforeLogin from './beforeloginpage';
 import GetPasswordPage from './password';
 import Navbar from './components/navbar';
 import ReactDOM from 'react-dom/client';
@@ -26,26 +28,26 @@ function App() {
     setIsLoggedIn(true);
   };
 
-  // const handleLogout = () => {
-  //   setIsLoggedIn(false);
-  // };
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
 
   const router = createBrowserRouter([
     {
       path: '/',
+      element: <BeforeLogin />,
+    },
+    {
+      path: '/login',
       element: <LoginPage onLogin={handleLogin} />,
     },
     {
-      path: '/register/getPhoneNumber',
-      element: <GetPhoneNumberPage />,
+      path: '/forgot-password',
+      element: <ForgotPassword />,
     },
     {
-      path: '/register/getPhoneNumber/enterCode',
-      element: <EnterCodePage />,
-    },
-    {
-      path: '/fill-info',
-      element: <FillInfoPage />,
+      path: '/register',
+      element: <RegisterPage />,
     },
     {
       path: '/select-sports',
@@ -81,11 +83,11 @@ function App() {
     },
     {
       path: "/home",
-      element: <Home />, // Added the /home route here
+      element: <Home />, 
     },
     {
       path: "/profile",
-      element: <Profile />, // Added the /home route here
+      element: <Profile />, 
     },
     
   ]);
