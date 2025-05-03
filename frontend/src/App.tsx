@@ -20,6 +20,7 @@ import GetPasswordPage from './password';
 import Navbar from './components/navbar';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Liked from './components/like';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -88,6 +89,10 @@ function App() {
     {
       path: "/profile",
       element: <Profile />, 
+    },
+    {
+      path: "/like",
+      element: <Liked />, 
     },
     
   ]);
