@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import GeneratePage from './components/generatepage';
-import ImageGenerator from './components/ImageGenerator';
 import LoginPage from './login';
-import GetPhoneNumberPage from './getPhonenum';
-import EnterCodePage from './enterCode';
 import SportsSelection from './pages/category/sports';
 import RegisterPage from './register';
 import PetSelection from './pages/category/pet';
@@ -16,9 +13,6 @@ import Home from './components/home';
 import ForgotPassword from './forgotpassword';
 import Profile from './profile';
 import BeforeLogin from './beforeloginpage';
-import GetPasswordPage from './password';
-import Navbar from './components/navbar';
-import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Liked from './components/like';
 
